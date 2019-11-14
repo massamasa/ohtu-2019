@@ -1,7 +1,7 @@
-
 package ohtu;
 
 public class Player {
+
     private int assists;
     private int goals;
     private String name;
@@ -68,7 +68,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return name + " - Born: " + birthdate;
+        return name + " team " + team + " goals " + goals + " assists " + assists;
     }
-      
+
 }

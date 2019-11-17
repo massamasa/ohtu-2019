@@ -12,5 +12,5 @@ Feature: As a registered user can log in with valid username/password-combinatio
     
     Scenario: nonexistent user can not login to 
         Given login is selected
-        When  nonexistent username and password are given
+        When  nonexistent username "nonexistent" and password "passw0rd" are given
         Then  user is not logged in and error message is given

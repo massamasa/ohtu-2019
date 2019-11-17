@@ -28,9 +28,7 @@ public class Stepdefs {
 
     @Given("command new user is selected")
     public void commandNewUserIsSelected() {
-        driver.get(baseUrl);
-        WebElement element = driver.findElement(By.linkText("register new user"));
-        element.click();
+        selectCommandNewUser();
     }
 
     @When("correct username {string} and password {string} are given")
@@ -94,6 +92,24 @@ public class Stepdefs {
         registerWith(username, password, password);
     }
 
+    @Given("user with username {string} with password {string} is successfully created")
+    public void userWithUsernameWithPasswordIsSuccessfullyCreated(String username, String password) {
+        selectCommandNewUser();
+        registerWith(username, password, password);
+        pageHasContent("Welcome to Ohtu Application!");
+    }
+
+    @Given("user with username {string} and password {string} is tried to be created")
+    public void userWithUsernameAndPasswordIsTriedToBeCreated(String username, String password) {
+        selectCommandNewUser();
+        registerWith(username, password, password);
+    }
+
+    @When("tried username {string} and password {string} are given")
+    public void triedUsernameAndPasswordAreGiven(String username, String password) {
+        logInWith(username, password);
+    }
+
     /* helper methods */
     private void pageHasContent(String content) {
         assertTrue(driver.getPageSource().contains(content));
@@ -118,5 +134,11 @@ public class Stepdefs {
         element.sendKeys(password);
         element = driver.findElement(By.name("login"));
         element.submit();
+    }
+
+    private void selectCommandNewUser() {
+        driver.get(baseUrl);
+        WebElement element = driver.findElement(By.linkText("register new user"));
+        element.click();
     }
 }
